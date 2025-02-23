@@ -1,0 +1,105 @@
+
+  @media only screen and (max-width: 1920px) {
+    #firstline{
+      border: 3px red solid;
+    }
+    
+    #firstline {
+      display: flex;
+      border: 6px solid black;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    
+    #firstline-left{
+      width: 50%;
+      background-color: blueviolet;
+      border-right: 6px solid black;
+    }
+    
+    #firstline-right{
+      width: 50%;
+      background-color: pink;
+    }
+    
+    #tresparts {
+      display: flex;
+      border: 6px solid black;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    
+    #left{
+      width: 33.33%;
+      background-color: rgb(38, 255, 0);
+      border-right: 6px solid black;
+    }
+    #center{
+      width: 33.33%;
+      background-color: rgb(54, 13, 158);
+      border-right: 6px solid black;
+    }
+    #right{
+      width: 33.33%;
+      background-color: orange;
+    }
+  }
+
+  @media only screen and (max-width: 1080px) {
+    #firstline{
+      border: 3px red solid;
+    }
+    
+    #firstline {
+      display: flex;
+      border: 6px solid black;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    
+    #firstline-left{
+      width: 50%;
+      background-color: blueviolet;
+      border-right: 6px solid black;
+    }
+    
+    #firstline-right{
+      width: 50%;
+      background-color: pink;
+    }
+    
+    #tresparts {
+      display: flex;
+      border: 6px solid black;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    
+    #left{
+      width: 33.33%;
+      background-color: rgb(38, 255, 0);
+      border-right: 6px solid black;
+    }
+    #center{
+      width: 33.33%;
+      background-color: rgb(54, 13, 158);
+      border-right: 6px solid black;
+    }
+    #right{
+      width: 33.33%;
+      background-color: orange;
+    }
+    #footer{
+      margin-bottom: -100rem;
+    }
+  }
+
+  @media only screen and (max-width: 412px) {
+    #footer{
+      margin-top: 100rem;
+    }
+  }

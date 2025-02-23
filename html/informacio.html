@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Page Title</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A brief page description">
+    <meta name="keywords" content="html,cheatsheet" />
+    <meta property="fb:admins" content="YourFacebookUsername" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <script src="../js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="../css/normalized.css">
+    <!-- <link rel="stylesheet" href="../css/index.css"> -->
+    <link rel="stylesheet" href="../css/estils.css">
+</head> 
+<body> 
+  <div class="menu">
+    <ul>
+      <li><a href="../index.html">Index</a></li>
+      <li class="moure"><a href="flexBox.html">FlexBox</a></li>
+      <li><a href="dadesPersonals.html">Dades personals</a></li>
+      <li><a href="experiancia.html">Experiancia</a></li>
+      <li><a href="calculadora.html">Calculadora</a></li>
+      <li><a href="calculadoraCientifica.html">Calculadora Cientifica</a></li>
+      <li><a href="informacio.html">Informacio sistema</a></li>
+    </ul>
+  </div> 
+    <h1>Informacio</h1>
+    <button type="button" onclick="mostrarInfo()">Mostrar informacio</button>
+    <p>Navegador utilitzat</p>
+    <p id="info"></p><br>
+    <p>Versio navegador</p>
+    <p id="versio"></p><br>
+    <p>Sistema operatiu</p>
+    <p id="sistema"></p><br>
+    <p>Data darrera modificacio</p>
+    <p id="data"></p><br>
+    <p>Idioma</p>
+    <p id="idioma"></p><br>
+    <p>Dades hosntame</p>
+    <p id="url"></p>
+    <script>
+        function mostrarInfo(){
+            document.getElementById("info").innerHTML = navigator.userAgent;
+            document.getElementById("versio").innerHTML = navigator.appVersion;
+            document.getElementById("sistema").innerHTML = navigator.platform;
+            document.getElementById("data").innerHTML = document.lastModified;
+            document.getElementById("idioma").innerHTML = navigator.language;
+            document.getElementById("url").innerHTML = document.URL;
+        }
+    </script>
+</body> 
+</html> 

@@ -1,0 +1,71 @@
+#errors {
+    border-color: red;
+    /* background-color: red; */
+    color: black;
+    border: 2px solid red;
+    width: 80%;
+    height: 4rem;
+    margin-left: 2rem;
+}
+
+#resultat {
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    width: 80%;
+    height: 3rem;
+    margin-left: 2rem;
+}
+
+.calculadora {
+    border: 3px solid black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 20%;
+    margin-left: 35rem;
+    background-color: antiquewhite;
+    margin-top: -3rem;
+}
+
+#titol {
+    margin-left: 35rem;
+}
+
+#seven, #four, #one, #C, #decimals, #M {
+    margin-left: 2.5rem;
+}
+
+button {
+    margin-left: 1rem;
+    padding: 1rem;
+}
+
+#moureHistorial {
+    padding: 1rem;
+}
+
+.menu ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.menu li {
+    padding-left: 1rem;
+}
+
+.esborrarNormal {
+    margin-left: 10rem;
+}
+
+#normal {
+    display: none;
+}
+
+#cientifica {
+    display: none;
+}
+
+#C {
+    width: 45px;
+    text-align: center;
+}

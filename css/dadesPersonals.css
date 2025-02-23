@@ -1,0 +1,138 @@
+@media only screen and (max-width: 1920px) {
+#foto{
+    width: 400px;
+    height: 400px;
+    padding-top: 10rem;
+    margin-top: -3rem;
+    margin-bottom:3rem;
+  }
+  
+  .img{
+   display: flex;
+   border: 3px solid black;
+   width: 30%;
+   margin-left: 3rem;
+   justify-content: center;
+   background-color: black;
+   margin-top: 3rem;
+  }
+  
+  .container{
+    margin-left: 40%;
+    margin-top: -35%;
+  }
+  
+  .dades{
+  background-color: cornflowerblue ;
+  width: 25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  }
+  .estudis_idiomes{
+    background-color: coral;
+    display: flex;
+    width: 46rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+  }
+  .estudis{
+    margin-left: 4rem;
+  }
+  .idiomes{
+    margin-left: 15rem;
+    margin-bottom: 4rem;
+  }
+  .experiencia{
+    background-color: darksalmon;
+    padding: 1rem;
+    width: 44rem
+  }
+  .experiencia a{
+    color: blue;
+    text-decoration: none;
+  }
+  .experiencia a:hover{
+    color:cyan;
+    text-decoration: none;
+  }
+
+  #dadesPersonals{
+    margin-top: 10%;
+  }
+}
+
+  @media only screen and (max-width: 1080px) {
+    #foto{
+      height: 400px;
+      width: 400px;
+    }
+    .img{
+      margin-top: -6rem;
+    }
+    .img{
+    background-color: transparent;
+    border: 0px;
+    }
+    .container{
+      margin-top: -28rem;
+    }
+    .dades{
+      width: 28rem;
+      background-color: blue;
+      color: white;
+      padding: 1rem;
+      margin-top: -2rem;
+      margin-bottom: 1rem;
+    }
+    .estudis_idiomes{
+      width: 30rem;
+      color: white;
+      background-color: blue;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .idiomes{
+      margin-left: +4rem;
+    }
+    .experiencia{
+      padding: 1rem;
+      width: 28rem;
+      text-align: center;
+      color: white;
+      background-color: blue;
+    }
+  }
+
+  @media only screen and (max-width: 412px) {
+    .dades{
+      margin-left: -10rem;
+      width: 23rem;
+    }
+    .estudis_idiomes{
+      margin-left: -10rem;
+      width: 25rem;
+      text-align: left;
+      text-align: center;
+    }
+    .estudis{
+      margin-left: 0.4rem;
+    }
+    .idiomes{
+      margin-left: +6rem;
+    }
+    .experiencia{
+      margin-left: -10rem;
+      width: 23rem;
+    }
+
+    body{
+      height: 100%;
+    }
+    #dadesPersonals{
+      color: black;
+    }
+    .img{
+      visibility: hidden;
+    }
+  }
+  

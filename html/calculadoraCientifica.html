@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Page Title</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A brief page description">
+  <meta name="keywords" content="html,cheatsheet" />
+  <meta property="fb:admins" content="YourFacebookUsername" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/normalized.css">
+  <link rel="stylesheet" href="../css/calculadora.css">
+  <!-- <link rel="stylesheet" href="../css/index.css"> -->
+  <link rel="stylesheet" href="../css/estils.css">
+  <script src="../js/script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="menu">
+    <ul>
+      <li><a href="../index.html">Index</a></li>
+      <li class="moure"><a href="flexBox.html">FlexBox</a></li>
+      <li><a href="dadesPersonals.html">Dades personals</a></li>
+      <li><a href="experiancia.html">Experiancia</a></li>
+      <li><a href="calculadora.html">Calculadora</a></li>
+      <li><a href="calculadoraCientifica.html">Calculadora Cientifica</a></li>
+      <li><a href="informacio.html">Informacio sistema</a></li>
+    </ul>
+  </div>
+
+  
+    <h2 id="titol">Calculadora Cientifica</h2>
+
+    <h1 id="usuari"></h1>
+
+    <div class="calculadora">
+
+      <input type="text" name="resultat" id="resultat" disabled><br><br>
+      <div id="errors"></div>
+  
+  
+      <br>
+      <button id="seven" value="7" onclick="tractarSet()">7</button>
+      <button id="eight" value="8" onclick="tractarVuit()">8</button>
+      <button id="nine" value="9" onclick="tractarNou()">9</button>
+      <button id="*" value="*" onclick="opcio('*')">*</button>
+        <!-- Mirar si cridar la funcio canviarTorn o es millor ficar
+         a cada operador el seu propi: sumar(), restar()... -->
+  
+  
+      <br>
+      <button id="four" onclick="tractarQuatre()">4</button>
+      <button id="five" onclick="tractarCinc()">5</button>
+      <button id="six" onclick="tractarSis()">6</button>
+      <button id="-" value="-" onclick="opcio('-')">-</button>
+  
+  
+      <br>
+      <button id="one" onclick="tractarUn()">1</button>
+      <button id="two" onclick="tractarDos()">2</button>
+      <button id="three" onclick="tractarTres()">3</button>
+      <button id="+" value="+" onclick="opcio('+')">+</button>
+  
+  
+      <br>
+      <button id="C" onclick="esborrar()">C</button>
+      <button id="0" onclick="tractarZero()">0</button>
+      <button id="=" onclick="mostrarResultat()">=</button>
+      <button id="/" value="/" onclick="opcio('/')">/</button>
+  
+      <br>
+      <button id="decimals" value="." onclick="tractarDecimals()">.</button>
+      <button id="potencia" onclick="potencia()">x2</button>
+      <button id="realQuadrada" onclick="realQuadrada()">√</button>
+      <button id="esborrar" onclick="esborrarUltim()">⌫</button>
+
+      <br>
+      <button id="M" onclick="guardar()">M+</button>
+      <button id="MR" onclick="mostrarValor()">MR</button>
+      <button id="MC" onclick="esborrarValor()">MC</button>
+      
+  
+    </div>
+
+  <!-- SI DONA ERROR, S'HA DE MOSTRAR ERROR I CORRETGIR, PERO HA DE PERMETR FER-HO -->
+
+  <!-- MAX LENGTH= 5 -->
+
+  <!-- Es millor utilitzar strings per a que sigui més fàçil concatenar -->
+
+  <!-- ficar id i onclick als numeros i operacions -->
+  <!-- DADES A FICAR  (per guardar les dades)
+      var Calculadora{      OBJECTE
+            OperadorUn
+            OperadorDos
+            Operador/Operacio
+            Memoria
+            Resultat?
+            Torn (si estem treballant sobre operadorUn o operadorDos)
+  } Cridar-la ficant Calculadora["OperadorOne"] -->
+
+  <!-- Ficar variables per guardar les dades-->
+
+  <!-- Un array per guardar les dades -->
+
+  <!-- Afegir un input sota del input principal on mostrarà el missatge d'error -->
+
+  <!-- FUNCIO TRACTAR
+        function tractar7( ){
+        if(torn==0){   OPERADOR 1
+          comprovarOperador() =>per a veure si ocupa tota la pantalla o no i si es poden seguir ficant més números
+        OperadorUn=OperadorUn+"7";
+        pantalla=documentGetById("resultat")
+        pantalla.innerHTML=OperadorUn
+                .value
+        }else if(torn==1){    OPERADOR 2
+
+        }else{
+          Mostrar un error si no cumpleix cap condicio
+
+          function gestionarNumero(x) i dins se li passa el numero
+        }
+      } -->
+
+  <!-- functions gestionarSuma(){
+
+      } 
+      
+          function operador(){
+                se li passa per parametres si serà suma, resta...
+          }-->
+
+  <!-- function calcularResultar(){
+            _comprobar Op 1 
+            _comprobar Op 2 
+            _comprobar Op 3 
+            _Fem operacio 
+      } -->
+
+  <!-- function esborrarTot(){
+            torn=0 => OperadorUn=null o = 0 
+      } 
+            
+          function esborrarUltim(){
+            torn=0 => esborrar l'ultim numero depenent del torn que sigui, si operador 1 o 2
+          }-->
+
+  <!-- 3 botons
+           
+              Guardar memoria =>
+              Esborrar memoria => MC
+              Recuperar memoria = MR
+          -->
+</body>
+
+</html>

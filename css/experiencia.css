@@ -1,0 +1,119 @@
+
+  @media only screen and (max-width: 1920px) {
+    
+    .titol{
+      text-align: center;
+    }
+    .alerta{
+      color: red;
+    }
+    
+    #udl{
+      width: 300px;
+      height: 200px;
+      margin-top: -10rem;
+    }
+    
+    .gm{
+      width: 50%;
+      background-color:darkseagreen;
+      border-right: 6px solid black;
+    }
+    .gm img{
+      height:300px;
+      width:450px;
+    }
+    .gs img{
+      height:300px;
+      width:450px;
+    }
+    
+    .gs{
+      width: 50%;
+      background-color:deepskyblue;
+    }
+    
+    .containerPractiques {
+      display: flex;
+      border: 6px solid black;
+      text-align: center;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+    
+    .laboral{
+      border: 6px solid black;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      background-color: coral;
+      text-align: center;
+    }
+    .laboral img{
+      height:300px;
+      width:450px;
+    }
+    
+  }
+
+
+  @media only screen and (max-width: 1080px) {
+    
+    .gm img{
+      height:200px;
+      width:300px;
+    }
+    .gs img{
+      height:200px;
+      width:300px;
+    }
+    .laboral img{
+      height:200px;
+      width:300px;
+    }
+    .containerPractiques{
+      height: 500px;
+    }
+    .laboral{
+      height: 400px;
+    }
+    .gm{
+      background-color: darkgrey;
+    }
+    .gs{
+      background-color: darkslategrey;
+      color: white;
+    }
+    .footer{
+      bottom: auto;
+    }
+  }
+
+  @media only screen and (max-width: 412px) {
+    img {
+      visibility: hidden;
+    }
+    .containerPractiques{
+      height: 750px;
+    }
+    .laboral{
+      height: 400px;
+    }
+    .gm{
+      background-color: darkgrey;
+      border-left: none;
+      border-right: none;
+      width: 21.1rem;
+      height: 25rem;
+      border-bottom: 6px solid black;
+    }
+    .gs{
+      background-color: darkslategrey;
+      color: white;
+      width: 21.1rem;
+      height: 21.6rem;
+    }
+    .containerPractiques{
+      display: flex;
+    flex-direction: column;
+    }
+  }
