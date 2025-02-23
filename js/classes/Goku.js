@@ -4,13 +4,18 @@ import { Freezer } from "./Freezer.js";
 import { Food } from "./Food.js";
 import { PowerUp } from "./PowerUp.js";
 
+/**
+ * @class Goku
+ * @extends GameObject
+ */
+
 export class Goku extends GameObject {
   constructor(y, x) {
     super(y, x);
     this.direction = 1;
     this.speedPacman = 32;
     this.score = 0;
-    this.pacmanLive = LIVES_PACMAN; // acabar de veure com fer que restin
+    this.pacmanLive = LIVES_PACMAN;
     this.widthCanvasPacman = 128;
     this.pacmanDiametre = 32;
 
@@ -20,7 +25,7 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveRight mou el pacman cap a la dreta i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveRight mou cap a la dreta i comprova si colisiona amb una roca o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
@@ -38,7 +43,7 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveLeft mou el pacman cap a l'esquerra i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveLeft mou cap a l'esquerra i comprova si colisiona amb una roca o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
@@ -56,7 +61,7 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveUp mou el pacman cap a dalt i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveUp mou cap a dalt i comprova si colisiona amb una roca o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
@@ -74,7 +79,7 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveDown mou el pacman cap a baix i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveDown mou cap a baix i comprova si colisiona amb una roca o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
@@ -92,14 +97,14 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function testCollideRock comprova si el pacman colisiona amb una roca.
+   * @function testCollideRock comprova si colisiona amb una roca.
    * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una roca i el mou a la posicio inicial.
    * Apart d'això, li resta una vida.
    * Té els següents parametres:
    * @param arrRocks
    * @param newX
    * @param newY
-   * @returns {boolean}r
+   * @returns {boolean}
    */
   testCollideRock(arrRocks, newX, newY) {
     for (const roca of arrRocks) {
@@ -108,6 +113,10 @@ export class Goku extends GameObject {
         this.pacmanLive--;
         alert("Has xocat amb una roca, has perdut una vida, et queden " + this.pacmanLive + " vides")
 
+        /**
+         * En el cas de que les vides del pacman siguin 0, mostra un missatge per consola de que ha perdut totes les vides i li pregunta si vol tornar a jugar.
+         * En el cas de que si, recarrega la pagina, en el cas de que no, para el joc.
+         */
         if (this.pacmanLive <= 0) {
           if (confirm("Has perdut totes les vides, vols tornar a jugar?")) {
             window.location.reload(); 
@@ -163,6 +172,11 @@ export class Goku extends GameObject {
             break;
         }
     }
+
+    /**
+     * Primer compriva si s'ha menjat algun power up, en el cas de que si, l'elimina, canviar a true el power up, mostra el missatge 
+     * que esta ocult al index amb display none i despres de 10 segons el desactiva i oculta el missatge.
+     */
 
     for (let i = 0; i < arrPowerUp.length; i++) {
         if (this.coordXPixels === arrPowerUp[i].coordXPixels && this.coordYPixels === arrPowerUp[i].coordYPixels) {

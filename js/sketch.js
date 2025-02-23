@@ -36,7 +36,7 @@ export const LIVES_PACMAN = 3;
 let imgRock;
 let imgEsferas;
 let soundFood;
-let soundPacman;
+let soundGoku;
 let numberErrorSound;
 
 let imgGoku;
@@ -75,7 +75,7 @@ function preload() { // tot lo pesat a preload
   imgGoku = loadImage("../img/goku.png", handleImage, handleError);
   imgFreezer = loadImage("../img/freezer4.png", handleImage, handleError);
   soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
-  soundPacman = loadSound("../img/sounds/pacman.mp3", handleSound, handleErrorSound);
+  soundGoku = loadSound("../img/sounds/goku.mp3", handleSound, handleErrorSound);
   imgPowerUp = loadImage("../img/rayo.png", handleImage, handleError);
   imgTemplo = loadImage("../img/templo.png", handleImage, handleError);
 }
@@ -232,16 +232,16 @@ function draw() {
 function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
     myGoku.moveRight(arrFood, arrRocks, arrFreezer, arrPowerUp);
-    soundPacman.play();
+    soundGoku.play();
   } else if (keyCode === LEFT_ARROW) {
     myGoku.moveLeft(arrFood, arrRocks, arrFreezer, arrPowerUp);
-    soundPacman.play();
+    soundGoku.play();
   } else if (keyCode === UP_ARROW) {
     myGoku.moveUp(arrFood, arrRocks, arrFreezer, arrPowerUp);
-    soundPacman.play();
+    soundGoku.play();
   } else if (keyCode === DOWN_ARROW) {
     myGoku.moveDown(arrFood, arrRocks, arrFreezer, arrPowerUp);
-    soundPacman.play();
+    soundGoku.play();
   } else {
     console.log("Error de tecla");
     const error = new ErrorPacman(1, "Error de tecla");
@@ -268,34 +268,33 @@ function showError() {
 /**
  * @function testFinishGame comprova si el joc ha acabat.
  * Pot acabar quan no queda més food, quan arriba al temps indicat o quan es queda sense vides.
+ * @constant temple comprova si el pacman ha arribat al templo
+ * rep cada element de l'array arrTemplo, le fico un alias de templo i compro si està en la mateixa posocio que el temple
+ * @constant arrFood.length que està dins de la variable recollit, comprova si no queda menjar
+ * i després si està en la posicio del temple, en el cas de que si, acaba el jox.
  */
 function testFinishGame() {
 
   let foodRecollit = arrFood.length === 0;
   let frezzersRecollit = arrFreezer.length === 0;
 
-  /**
-   * @constant temple comprova si el pacman ha arribat al templo
-   * rep cada element de l'array arrTemplo, le fico un alias de templo i compro si està en la mateixa posocio que el temple
-   */
   let temple = arrTemplo.some(templo =>
     myGoku.coordXPixels === templo.coordXPixels && myGoku.coordYPixels === templo.coordYPixels
   );
 
   /**
-   * @constant arrFood.length que està dins de la variable recollit, comprova si no queda menjar
-   * i després si està en la posicio del temple, en el cas de que si, acaba el jox.
+   * @constant theConfirm si es compleixen les condicions, mostra un missatge de confirmació per pantalla
+   * i en el cas de que es premi el botó de confirmar, recarrega la pàgina.
    */
-  if (foodRecollit && frezzersRecollit && temple) {
+  if (foodRecollit && frezzersRecollit && temple) {   // condicio de si s'ha agaft tot el food, les esferes de drac i estàs al temple
     noLoop();
     const theConfirm = confirm("Has recollit tot el food i has arribat al temple, vols tornar a començar?");
     if (theConfirm) {
       window.location.reload();
     } else {
-      alert("Fi del joc! Gràcies per jugar.");
+      alert("Gracies per jugar");
     }
   } else if (timer >= 90) {
-    // test lose game
     confirm("Fi del joc, has perdut");
     window.location.reload();
   }
