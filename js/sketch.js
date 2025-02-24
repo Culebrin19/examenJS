@@ -166,10 +166,6 @@ function setup() { // s'executa una vegada
         const all = new All(filaActual, columnaActual);
         console.log(`He creat all a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrAll.push(all);
-      } else if (map[filaActual][columnaActual] === 0) {
-        const terra = new GameObject(filaActual, columnaActual);
-        console.log(`He creat terra a posicio fila ${filaActual}i columna ${columnaActual}`);
-        arrTerra.push(terra);
       }
       console.log(arrRocks.length);
     }
