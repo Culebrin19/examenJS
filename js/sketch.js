@@ -12,7 +12,7 @@ import { All } from "./classes/All.js";
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 1],
+  [1, 0, 6, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 1],
   [1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 11, 0, 0, 6, 0, 0, 1],
   [1, 0, 17, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
@@ -79,7 +79,7 @@ function preload() { // tot lo pesat a preload
   imgZombie = loadImage("../img/zombi.png", handleImage, handleError);
   soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
   soundGoku = loadSound("../img/sounds/goku.mp3", handleSound, handleErrorSound);
-  imgPowerUp = loadImage("../img/rayo.png", handleImage, handleError);
+  imgPowerUp = loadImage("../img/ampolla.png", handleImage, handleError);
   imgDracula = loadImage("../img/dracula.png", handleImage, handleError);
   imgAll = loadImage("../img/all.png", handleImage, handleError);
 }
@@ -233,7 +233,6 @@ for (let i = 0; i < arrZombi.length; i++) {
 function draw() {
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
-  arrFood.forEach((menjar) => menjar.showObject(imgAmpolla));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
   arrAll.forEach((all) => all.showObject(imgAll));
   myGoku.showObject(imgSimonRight);
@@ -320,9 +319,22 @@ function testFinishGame() {
   } else if (timer >= 90) {
     confirm("Fi del joc, has perdut");
     window.location.reload();
-  } else if (arrAll.length === 0) {
-    confirm("Fi del joc, has guanyat");
-    window.location.reload();
+  } else if (arrAll.length === 0) { 
+    noLoop();
+    const theConfirm = confirm("Has guanyat, tens tots el alls, vols tornar a jugar?");
+    if (theConfirm) {
+      window.location.reload();
+    } else {
+      alert("Gracies per jugar");
+    }
+  }else if (temple){
+    noLoop();
+    const theConfirm = confirm("T'ha matat el dracula, vols tornar a jugar?");
+    if (theConfirm) {
+      window.location.reload();
+    } else {
+      alert("Gracies per jugar");
+    }
   }
 }
 

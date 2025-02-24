@@ -6,7 +6,7 @@ import { GameObject } from "./GameObject.js";
 export class All extends GameObject {
   constructor(y, x) {
     super(y, x);
-    this.pointsAll = 10;
+    this.pointsAll = 5;
   }
 
   toString() {
