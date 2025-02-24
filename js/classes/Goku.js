@@ -1,7 +1,7 @@
 import { GameObject } from "./GameObject.js";
 import { IMAGE_SIZE, WIDTH_CANVAS, HEIGHT_CANVAS, LIVES_PACMAN } from "../sketch.js";
 import { Freezer } from "./Freezer.js";
-import { Food } from "./Food.js";
+import { all } from "./all.js";
 import { PowerUp } from "./PowerUp.js";
 
 /**
@@ -25,74 +25,74 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveRight mou cap a la dreta i comprova si colisiona amb una zombi o si es menja un Food.
+   * @function moveRight mou cap a la dreta i comprova si colisiona amb una zombi o si es menja un all/ampolla.
    * Té els següents parametres:
-   * @param arrFood
+   * @param arrall
    * @param arrRocks
    * @param arrZombi
    */
-  moveRight(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll) {
+  moveRight(arrall, arrRocks, arrZombi, arrAmpolla, arrAll) {
     const temp = this.coordXPixels + this.speedPacman;
     if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a la dreta");
     } else {
       this.direction = 1;
       this.coordXPixels = temp;
-      this.eatFood(arrFood, arrZombi, arrAmpolla, arrAll);
+      this.eatall(arrall, arrZombi, arrAmpolla, arrAll);
     }
   }
 
   /**
-   * @function moveLeft mou cap a l'esquerra i comprova si colisiona amb una zombi o si es menja un Food.
+   * @function moveLeft mou cap a l'esquerra i comprova si colisiona amb una zombi o si es menja un all/ampolla.
    * Té els següents parametres:
-   * @param arrFood
+   * @param arrall
    * @param arrRocks
    * @param arrZombi
    */
-  moveLeft(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll) {
+  moveLeft(arrall, arrRocks, arrZombi, arrAmpolla, arrAll) {
     const temp = this.coordXPixels - this.speedPacman;
     if (temp < 0 || this.testCollideRock(arrZombi, arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a l'esquerra");
     } else {
       this.direction = 3;
       this.coordXPixels = temp;
-      this.eatFood(arrFood, arrZombi, arrAmpolla, arrAll);
+      this.eatall(arrall, arrZombi, arrAmpolla, arrAll);
     }
   }
 
   /**
-   * @function moveUp mou cap a dalt i comprova si colisiona amb una zombi o si es menja un Food.
+   * @function moveUp mou cap a dalt i comprova si colisiona amb una zombi o si es menja un all/ampolla.
    * Té els següents parametres:
-   * @param arrFood
+   * @param arrall
    * @param arrRocks
    * @param arrZombi
    */
-  moveUp(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll) {
+  moveUp(arrall, arrRocks, arrZombi, arrAmpolla, arrAll) {
     const temp = this.coordYPixels - this.speedPacman;
     if (temp < 0 || this.testCollideRock(arrZombi, arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a dalt");
     } else {
       this.direction = 2;
       this.coordYPixels = temp;
-      this.eatFood(arrFood, arrZombi, arrAmpolla, arrAll);
+      this.eatall(arrall, arrZombi, arrAmpolla, arrAll);
     }
   }
 
   /**
-   * @function moveDown mou cap a baix i comprova si colisiona amb una zombi o si es menja un Food.
+   * @function moveDown mou cap a baix i comprova si colisiona amb una zombi o si es menja un all/ampolla.
    * Té els següents parametres:
-   * @param arrFood
+   * @param arrall
    * @param arrRocks
    * @param arrZombi
    */
-  moveDown(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll) {
+  moveDown(arrall, arrRocks, arrZombi, arrAmpolla, arrAll) {
     const temp = this.coordYPixels + this.speedPacman;
     if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a baix");
     } else {
       this.direction = 4;
       this.coordYPixels = temp;
-      this.eatFood(arrFood, arrZombi, arrAmpolla, arrAll);
+      this.eatall(arrall, arrZombi, arrAmpolla, arrAll);
     }
   }
 
@@ -138,25 +138,25 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function eatFood comprova si simon ha menjat/colissionat amb alguna ampolla/zombi/all, en base a que sigui, fa una cosa o una altra.
+   * @function eatall comprova si simon ha menjat/colissionat amb alguna ampolla/zombi/all, en base a que sigui, fa una cosa o una altra.
    * En el cas de que sigui un all, mostra un missatge per consola de que ha menjat all i suma la puntuació.
    * Té els següents parametres:
-   * @param arrFood
+   * @param arrall
    * @param arrZombi
    * @param arrAmpolla
    * @param arr
    */
-  eatFood(arrFood, arrZombi, arrAmpolla, arrAll) {
+  eatall(arrall, arrZombi, arrAmpolla, arrAll) {
     /**
      * @var puntsExtra mutiplicara per 2 en el cas de que estigui true, i per 1  en el cas de que estigui false
      */
     let puntsExtra = this.doblePunts ? 2 : 1; 
 
-    for (let i = 0; i < arrFood.length; i++) {
-        if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
-            console.log("Has menjat Food");
-            this.score += arrFood[i].pointsFood * puntsExtra;
-            arrFood.splice(i, 1);
+    for (let i = 0; i < arrall.length; i++) {
+        if (this.coordXPixels === arrall[i].coordXPixels && this.coordYPixels === arrall[i].coordYPixels) {
+            console.log("Has menjat all");
+            this.score += arrall[i].pointsall * puntsExtra;
+            arrall.splice(i, 1);
             console.log(`Puntuacio actual: ${this.score}`);
             break;
         }
