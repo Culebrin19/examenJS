@@ -1,7 +1,7 @@
 import { GameObject } from "./GameObject.js";
 import { IMAGE_SIZE, WIDTH_CANVAS, HEIGHT_CANVAS, LIVES_PACMAN } from "../sketch.js";
 import { Freezer } from "./Freezer.js";
-import { all } from "./all.js";
+import { All } from "./All.js";
 import { PowerUp } from "./PowerUp.js";
 
 /**
