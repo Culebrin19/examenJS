@@ -14,14 +14,14 @@ const map = [
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 1],
   [1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 11, 0, 0, 6, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 17, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 14, 1],
-  [1, 11, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 11, 0, 0, 0, 0, 1, 0, 0, 0, 17, 0, 0, 1],
   [1, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 11, 0, 0, 0, 1, 0, 1, 1, 0, 11, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 15, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 4, 1],
+  [1, 15, 17, 0, 0, 0, 17, 0, 0, 11, 0, 0, 4, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
@@ -35,11 +35,12 @@ export const LIVES_PACMAN = 1;
 
 let imgRock;
 let imgAmpolla;
+let imgAll;
 let soundFood;
 let soundGoku;
 let numberErrorSound;
 
-let imgGoku;
+let imgSimonRight;
 let imgZombie;
 let myGoku;
 let imgPowerUp;
@@ -59,9 +60,9 @@ const powerUpDuration = 10000;
 const arrRocks = [];
 const arrFood = [];
 const arrCireres = [];
-const arrPowerUp = [];
+const arrAmpolla = [];
 const arrZombi = [];
-const arrTemplo = [];
+const arrDracula = [];
 let numberImagesLoaded = 0;
 console.log("Boff");
 
@@ -72,12 +73,13 @@ function preload() { // tot lo pesat a preload
   // eslint-disable-next-line sonarjs/no-use-of-empty-return-value
   imgRock = loadImage("../img/paret.png", handleImage("roca"), handleError);
   imgAmpolla = loadImage("../img/ampolla.png", handleImage, handleError);
-  imgGoku = loadImage("../img/goku.png", handleImage, handleError);
+  imgSimonRight = loadImage("../img/simonRight.png", handleImage, handleError);
   imgZombie = loadImage("../img/zombi.png", handleImage, handleError);
   soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
   soundGoku = loadSound("../img/sounds/goku.mp3", handleSound, handleErrorSound);
   imgPowerUp = loadImage("../img/rayo.png", handleImage, handleError);
   imgDracula = loadImage("../img/dracula.png", handleImage, handleError);
+  imgAll = loadImage("../img/all.png", handleImage, handleError);
 }
 
 /**
@@ -147,11 +149,11 @@ function setup() { // s'executa una vegada
       } else if (map[filaActual][columnaActual] === 6) {
         myGoku = new Goku(filaActual, columnaActual);
         const powerUp = new PowerUp(filaActual, columnaActual);
-        arrPowerUp.push(powerUp);
+        arrAmpolla.push(powerUp);
       } else if (map[filaActual][columnaActual] === 15) {
         const templo = new GameObject(filaActual, columnaActual);
         console.log(`He creat templo a posicio fila ${filaActual}i columna ${columnaActual}`);
-        arrTemplo.push(templo);
+        arrDracula.push(templo);
       }
       console.log(arrRocks.length);
     }
@@ -171,6 +173,14 @@ if (myGoku) {
   }
 }
 
+for (let i = 0; i < arrDracula.length; i++) {
+  if (myGoku.coordXPixels === arrDracula[i].coordXPixels && myGoku.coordYPixels === arrDracula[i].coordYPixels) {
+    myGoku.testCollideRock(arrDracula[i]);
+    soundFood.play();
+  }
+}
+
+
 /**
  * @function testCollideFood comprova si el pacman colisiona amb un menjar.
  * En el cas de que si si, mostra un missatge per consola de que ha colissionat amb un menjar
@@ -184,9 +194,9 @@ for (let i = 0; i < arrFood.length; i++) {
   }
 }
 
-for (let i = 0; i < arrPowerUp.length; i++) {
-  if (myGoku.coordXPixels === arrPowerUp[i].coordXPixels && myGoku.coordYPixels === arrPowerUp[i].coordYPixels) {
-    myGoku.testCollideRock(arrPowerUp[i]);
+for (let i = 0; i < arrAmpolla.length; i++) {
+  if (myGoku.coordXPixels === arrAmpolla[i].coordXPixels && myGoku.coordYPixels === arrAmpolla[i].coordYPixels) {
+    myGoku.testCollideRock(arrAmpolla[i]);
     soundFood.play();
   }
 }
@@ -212,10 +222,10 @@ function draw() {
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgAmpolla));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
-  myGoku.showObject(imgGoku);
-  arrPowerUp.forEach((powerUp) => powerUp.showObject(imgPowerUp));
+  myGoku.showObject(imgSimonRight);
+  arrAmpolla.forEach((powerUp) => powerUp.showObject(imgPowerUp));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
-  arrTemplo.forEach((templo) => templo.showObject(imgDracula));
+  arrDracula.forEach((templo) => templo.showObject(imgDracula));
   textSize(20);
   textAlign(LEFT, CENTER);
   timer = floor((millis() - startTimeGame) / 1000);
@@ -231,16 +241,16 @@ function draw() {
  */
 function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
-    myGoku.moveRight(arrFood, arrRocks, arrZombi, arrPowerUp);
+    myGoku.moveRight(arrFood, arrRocks, arrZombi, arrAmpolla);
     soundGoku.play();
   } else if (keyCode === LEFT_ARROW) {
-    myGoku.moveLeft(arrFood, arrRocks, arrZombi, arrPowerUp);
+    myGoku.moveLeft(arrFood, arrRocks, arrZombi, arrAmpolla);
     soundGoku.play();
   } else if (keyCode === UP_ARROW) {
-    myGoku.moveUp(arrFood, arrRocks, arrZombi, arrPowerUp);
+    myGoku.moveUp(arrFood, arrRocks, arrZombi, arrAmpolla);
     soundGoku.play();
   } else if (keyCode === DOWN_ARROW) {
-    myGoku.moveDown(arrFood, arrRocks, arrZombi, arrPowerUp);
+    myGoku.moveDown(arrFood, arrRocks, arrZombi, arrAmpolla);
     soundGoku.play();
   } else {
     console.log("Error de tecla");
@@ -269,16 +279,15 @@ function showError() {
  * @function testFinishGame comprova si el joc ha acabat.
  * Pot acabar quan no queda més food, quan arriba al temps indicat o quan es queda sense vides.
  * @constant temple comprova si el pacman ha arribat al templo
- * rep cada element de l'array arrTemplo, le fico un alias de templo i compro si està en la mateixa posocio que el temple
+ * rep cada element de l'array arrDracula, le fico un alias de templo i compro si està en la mateixa posocio que el temple
  * @constant arrFood.length que està dins de la variable recollit, comprova si no queda menjar
  * i després si està en la posicio del temple, en el cas de que si, acaba el jox.
  */
 function testFinishGame() {
 
-  let foodRecollit = arrFood.length === 0;
-  let frezzersRecollit = arrZombi.length === 0;
+  let ampollaRecollit = arrAmpolla.length === 0;
 
-  let temple = arrTemplo.some(templo =>
+  let temple = arrDracula.some(templo =>
     myGoku.coordXPixels === templo.coordXPixels && myGoku.coordYPixels === templo.coordYPixels
   );
 
@@ -286,9 +295,9 @@ function testFinishGame() {
    * @constant theConfirm si es compleixen les condicions, mostra un missatge de confirmació per pantalla
    * i en el cas de que es premi el botó de confirmar, recarrega la pàgina.
    */
-  if (foodRecollit && frezzersRecollit && temple) {   // condicio de si s'ha agaft tot el food, les esferes de drac i estàs al temple
+  if (ampollaRecollit && temple) {   // condicio de si s'ha agaft tot el food, les esferes de drac i estàs al temple
     noLoop();
-    const theConfirm = confirm("Has recollit tot el food i has arribat al temple, vols tornar a començar?");
+    const theConfirm = confirm("Has matat al dracula, fi del joc, vols tornar a jugar?");
     if (theConfirm) {
       window.location.reload();
     } else {
