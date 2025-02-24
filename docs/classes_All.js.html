@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>classes/PowerUp.js - Documentation</title>
+    <title>classes/All.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -43,7 +43,7 @@ Té els següents parametres:</a></li><li><a href="global.html#testCollideRockco
 
 <div id="main">
     
-    <h1 class="page-title">classes/PowerUp.js</h1>
+    <h1 class="page-title">classes/All.js</h1>
     
 
     
@@ -56,16 +56,17 @@ Té els següents parametres:</a></li><li><a href="global.html#testCollideRockco
             <pre class="prettyprint source linenums"><code>import { GameObject } from "./GameObject.js";
 
 /**
- * @class PowerUp representa un objecte especial que activa un efecte temporal en el joc.
+ * @class All és una classe filla de GameObject que representa el menjar del joc i "controla" el tema de punts del All.
  */
-export class PowerUp extends GameObject {
+export class All extends GameObject {
   constructor(y, x) {
     super(y, x);
+    this.pointsAll = 5;
   }
 
   toString() {
-    console.log(`PowerUp at row: ${this.coordY} column: ${this.coordX}`);
-    return `PowerUp`;
+    console.log(`All at row: ${this.coordY} column: ${this.coordX}`);
+    return `All: ${this.pointsAll}`;
   }
 }
 </code></pre>
