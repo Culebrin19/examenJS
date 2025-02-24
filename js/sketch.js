@@ -42,10 +42,14 @@ let soundGoku;
 let numberErrorSound;
 
 let imgSimonRight;
+let imgSimonLeft;
+let imgSimonUp;
+let imgSimonDown;
 let imgZombie;
 let myGoku;
 let imgPowerUp;
 let imgDracula;
+let imgTerra;
 
 const timerSecond = 0;
 let timer = 0;
@@ -65,6 +69,7 @@ const arrAmpolla = [];
 const arrZombi = [];
 const arrDracula = [];
 const arrAll = [];
+const arrTerra = [];
 let numberImagesLoaded = 0;
 console.log("Boff");
 
@@ -82,6 +87,7 @@ function preload() { // tot lo pesat a preload
   imgPowerUp = loadImage("../img/ampolla.png", handleImage, handleError);
   imgDracula = loadImage("../img/dracula.png", handleImage, handleError);
   imgAll = loadImage("../img/all.png", handleImage, handleError);
+  imgTerra = loadImage("../img/terra.png", handleImage, handleError);
 }
 
 /**
@@ -160,6 +166,10 @@ function setup() { // s'executa una vegada
         const all = new All(filaActual, columnaActual);
         console.log(`He creat all a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrAll.push(all);
+      } else if (map[filaActual][columnaActual] === 0) {
+        const terra = new GameObject(filaActual, columnaActual);
+        console.log(`He creat terra a posicio fila ${filaActual}i columna ${columnaActual}`);
+        arrTerra.push(terra);
       }
       console.log(arrRocks.length);
     }
@@ -239,6 +249,7 @@ function draw() {
   arrAmpolla.forEach((powerUp) => powerUp.showObject(imgPowerUp));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
   arrDracula.forEach((templo) => templo.showObject(imgDracula));
+  arrTerra.forEach((terra) => terra.showObject(imgTerra));
   textSize(20);
   textAlign(LEFT, CENTER);
   timer = floor((millis() - startTimeGame) / 1000);
@@ -317,7 +328,7 @@ function testFinishGame() {
       alert("Gracies per jugar");
     }
   } else if (timer >= 90) {
-    confirm("Fi del joc, has perdut");
+    confirm("Fi del joc, s'ha acabat el temps, has perdut");
     window.location.reload();
   } else if (arrAll.length === 0) { 
     noLoop();
