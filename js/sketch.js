@@ -4,6 +4,7 @@ import { Food } from "./classes/Food.js";
 import { ErrorPacman } from "./classes/ErrorPacman.js";
 import { Freezer } from "./classes/Freezer.js";
 import { PowerUp } from "./classes/PowerUp.js";
+import { All } from "./classes/All.js";
 
 /**
  * @constant map es el mapa del joc, cada número representa un objtecte diferent
@@ -63,6 +64,7 @@ const arrCireres = [];
 const arrAmpolla = [];
 const arrZombi = [];
 const arrDracula = [];
+const arrAll = [];
 let numberImagesLoaded = 0;
 console.log("Boff");
 
@@ -154,6 +156,10 @@ function setup() { // s'executa una vegada
         const templo = new GameObject(filaActual, columnaActual);
         console.log(`He creat templo a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrDracula.push(templo);
+      } else if (map[filaActual][columnaActual] === 17) {
+        const all = new All(filaActual, columnaActual);
+        console.log(`He creat all a posicio fila ${filaActual}i columna ${columnaActual}`);
+        arrAll.push(all);
       }
       console.log(arrRocks.length);
     }
@@ -176,6 +182,13 @@ if (myGoku) {
 for (let i = 0; i < arrDracula.length; i++) {
   if (myGoku.coordXPixels === arrDracula[i].coordXPixels && myGoku.coordYPixels === arrDracula[i].coordYPixels) {
     myGoku.testCollideRock(arrDracula[i]);
+    soundFood.play();
+  }
+}
+
+for (let i = 0; i < arrAll.length; i++) {
+  if (myGoku.coordXPixels === arrAll[i].coordXPixels && myGoku.coordYPixels === arrAll[i].coordYPixels) {
+    myGoku.testCollideRock(arrAll[i]);
     soundFood.play();
   }
 }
@@ -222,6 +235,7 @@ function draw() {
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgAmpolla));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
+  arrAll.forEach((all) => all.showObject(imgAll));
   myGoku.showObject(imgSimonRight);
   arrAmpolla.forEach((powerUp) => powerUp.showObject(imgPowerUp));
   arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
@@ -241,16 +255,16 @@ function draw() {
  */
 function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
-    myGoku.moveRight(arrFood, arrRocks, arrZombi, arrAmpolla);
+    myGoku.moveRight(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll);
     soundGoku.play();
   } else if (keyCode === LEFT_ARROW) {
-    myGoku.moveLeft(arrFood, arrRocks, arrZombi, arrAmpolla);
+    myGoku.moveLeft(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll);
     soundGoku.play();
   } else if (keyCode === UP_ARROW) {
-    myGoku.moveUp(arrFood, arrRocks, arrZombi, arrAmpolla);
+    myGoku.moveUp(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll);
     soundGoku.play();
   } else if (keyCode === DOWN_ARROW) {
-    myGoku.moveDown(arrFood, arrRocks, arrZombi, arrAmpolla);
+    myGoku.moveDown(arrFood, arrRocks, arrZombi, arrAmpolla, arrAll);
     soundGoku.play();
   } else {
     console.log("Error de tecla");
