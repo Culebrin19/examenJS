@@ -33,7 +33,7 @@ export class Goku extends GameObject {
    */
   moveRight(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordXPixels + this.speedPacman;
-    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, temp, this.coordYPixels) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a la dreta");
     } else {
       this.direction = 1;
@@ -51,7 +51,7 @@ export class Goku extends GameObject {
    */
   moveLeft(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordXPixels - this.speedPacman;
-    if (temp < 0 || this.testCollideRock(arrZombi, temp, this.coordYPixels) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp < 0 || this.testCollideRock(arrZombi, arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a l'esquerra");
     } else {
       this.direction = 3;
@@ -69,7 +69,7 @@ export class Goku extends GameObject {
    */
   moveUp(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordYPixels - this.speedPacman;
-    if (temp < 0 || this.testCollideRock(arrZombi, this.coordXPixels, temp) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp < 0 || this.testCollideRock(arrZombi, arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a dalt");
     } else {
       this.direction = 2;
@@ -87,7 +87,7 @@ export class Goku extends GameObject {
    */
   moveDown(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordYPixels + this.speedPacman;
-    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, this.coordXPixels, temp) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a baix");
     } else {
       this.direction = 4;
@@ -127,6 +127,13 @@ export class Goku extends GameObject {
         return true;
       }
     }
+
+    for (const rock of arrRocks) {
+      if (newX === rock.coordXPixels && newY === rock.coordYPixels) {
+          console.log("Error, una roca pel cami");
+          return true;
+      }
+  }
     return false;
   }
 
