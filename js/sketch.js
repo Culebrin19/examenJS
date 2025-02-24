@@ -305,7 +305,7 @@ function showError() {
  */
 function testFinishGame() {
 
-  let ampollaRecollit = arrAmpolla.length === 0;
+  let ampollaRecollit = arrAmpolla.length === 1;
 
   let temple = arrDracula.some(templo =>
     myGoku.coordXPixels === templo.coordXPixels && myGoku.coordYPixels === templo.coordYPixels
@@ -334,7 +334,7 @@ function testFinishGame() {
     } else {
       alert("Gracies per jugar");
     }
-  }else if (temple){
+  }else if (temple && arrAll.length > 0) {
     noLoop();
     const theConfirm = confirm("T'ha matat el dracula, vols tornar a jugar?");
     if (theConfirm) {
