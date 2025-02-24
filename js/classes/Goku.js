@@ -98,8 +98,7 @@ export class Goku extends GameObject {
 
   /**
    * @function testCollideRock comprova si colisiona amb una zombi.
-   * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una zombi i el mou a la posicio inicial.
-   * Apart d'això, li resta una vida.
+   * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una zombi i li resta una vida.
    * Té els següents parametres:
    * @param arrZombi
    * @param newX
@@ -114,7 +113,7 @@ export class Goku extends GameObject {
         alert("Has xocat amb una zombi, has perdut una vida, et queden " + this.pacmanLive + " vides")
 
         /**
-         * En el cas de que les vides del pacman siguin 0, mostra un missatge per consola de que ha perdut totes les vides i li pregunta si vol tornar a jugar.
+         * En el cas de que les vides del simon siguin 0, mostra un missatge per consola de que ha perdut totes les vides i li pregunta si vol tornar a jugar.
          * En el cas de que si, recarrega la pagina, en el cas de que no, para el joc.
          */
         if (this.pacmanLive <= 0) {
@@ -137,22 +136,14 @@ export class Goku extends GameObject {
     return false;
   }
 
-
-  // testCollideFood(arrFood) {
-  //   for (let i = 0; i < arrFood.length; i++) {
-  //     if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
-  //       console.log("Has menjat Food");
-  //       arrFood.splice(i, 1);
-  //     }
-  //   }
-  // }
-
   /**
    * @function eatFood comprova si simon ha menjat/colissionat amb alguna ampolla/zombi/all, en base a que sigui, fa una cosa o una altra.
    * En el cas de que sigui un all, mostra un missatge per consola de que ha menjat all i suma la puntuació.
    * Té els següents parametres:
    * @param arrFood
    * @param arrZombi
+   * @param arrAmpolla
+   * @param arr
    */
   eatFood(arrFood, arrZombi, arrAmpolla, arrAll) {
     /**
