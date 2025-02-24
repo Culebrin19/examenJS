@@ -106,7 +106,7 @@ export class Goku extends GameObject {
    * @param newY
    * @returns {boolean}
    */
-  testCollideRock(arrZombi, newX, newY) {
+  testCollideRock(arrZombi, arrRocks, newX, newY) {
     for (const zombi of arrZombi) {
       if (newX === zombi.coordXPixels && newY === zombi.coordYPixels) {
         console.log("Has colisionat amb una zombi");
