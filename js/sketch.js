@@ -17,9 +17,9 @@ const map = [
   [1, 0, 0, 0, 0, 0, 0, 11, 0, 0, 6, 0, 0, 1],
   [1, 0, 17, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 14, 1],
-  [1, 11, 0, 0, 0, 0, 1, 0, 0, 0, 17, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 17, 0, 0, 1],
   [1, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 11, 0, 0, 0, 1, 0, 1, 1, 0, 11, 0, 0, 1],
+  [1, 11, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 15, 17, 0, 0, 0, 17, 0, 0, 11, 0, 0, 4, 1],
@@ -300,8 +300,8 @@ function showError() {
  * Pot acabar quan no queda més food, quan arriba al temps indicat o quan es queda sense vides.
  * @constant temple comprova si el pacman ha arribat al templo
  * rep cada element de l'array arrDracula, le fico un alias de templo i compro si està en la mateixa posocio que el temple
- * @constant arrFood.length que està dins de la variable recollit, comprova si no queda menjar
- * i després si està en la posicio del temple, en el cas de que si, acaba el jox.
+ * @constant ampollaRecollit.length que està dins de la variable recollit, comprova si ha agafat alguna botella, en el cas de que si
+ * i estigui en la posicio del dracula, mata al dracula, si no, el dracula el mata a ell.
  */
 function testFinishGame() {
 
