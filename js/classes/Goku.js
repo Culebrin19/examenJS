@@ -25,93 +25,93 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function moveRight mou cap a la dreta i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveRight mou cap a la dreta i comprova si colisiona amb una zombi o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
-   * @param arrFreezer
+   * @param arrZombi
    */
-  moveRight(arrFood, arrRocks, arrFreezer, arrPowerUp) {
+  moveRight(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordXPixels + this.speedPacman;
-    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, temp, this.coordYPixels) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a la dreta");
     } else {
       this.direction = 1;
       this.coordXPixels = temp;
-      this.eatFood(arrFood, arrFreezer, arrPowerUp);
+      this.eatFood(arrFood, arrZombi, arrPowerUp);
     }
   }
 
   /**
-   * @function moveLeft mou cap a l'esquerra i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveLeft mou cap a l'esquerra i comprova si colisiona amb una zombi o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
-   * @param arrFreezer
+   * @param arrZombi
    */
-  moveLeft(arrFood, arrRocks, arrFreezer, arrPowerUp) {
+  moveLeft(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordXPixels - this.speedPacman;
-    if (temp < 0 || this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
+    if (temp < 0 || this.testCollideRock(arrZombi, temp, this.coordYPixels) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a l'esquerra");
     } else {
       this.direction = 3;
       this.coordXPixels = temp;
-      this.eatFood(arrFood, arrFreezer, arrPowerUp);
+      this.eatFood(arrFood, arrZombi, arrPowerUp);
     }
   }
 
   /**
-   * @function moveUp mou cap a dalt i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveUp mou cap a dalt i comprova si colisiona amb una zombi o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
-   * @param arrFreezer
+   * @param arrZombi
    */
-  moveUp(arrFood, arrRocks, arrFreezer, arrPowerUp) {
+  moveUp(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordYPixels - this.speedPacman;
-    if (temp < 0 || this.testCollideRock(arrRocks, this.coordXPixels, temp)) {
+    if (temp < 0 || this.testCollideRock(arrZombi, this.coordXPixels, temp) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a dalt");
     } else {
       this.direction = 2;
       this.coordYPixels = temp;
-      this.eatFood(arrFood, arrFreezer, arrPowerUp);
+      this.eatFood(arrFood, arrZombi, arrPowerUp);
     }
   }
 
   /**
-   * @function moveDown mou cap a baix i comprova si colisiona amb una roca o si es menja un food.
+   * @function moveDown mou cap a baix i comprova si colisiona amb una zombi o si es menja un food.
    * Té els següents parametres:
    * @param arrFood
    * @param arrRocks
-   * @param arrFreezer
+   * @param arrZombi
    */
-  moveDown(arrFood, arrRocks, arrFreezer, arrPowerUp) {
+  moveDown(arrFood, arrRocks, arrZombi, arrPowerUp) {
     const temp = this.coordYPixels + this.speedPacman;
-    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrRocks, this.coordXPixels, temp)) {
+    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrZombi, this.coordXPixels, temp) && this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a baix");
     } else {
       this.direction = 4;
       this.coordYPixels = temp;
-      this.eatFood(arrFood, arrFreezer, arrPowerUp);
+      this.eatFood(arrFood, arrZombi, arrPowerUp);
     }
   }
 
   /**
-   * @function testCollideRock comprova si colisiona amb una roca.
-   * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una roca i el mou a la posicio inicial.
+   * @function testCollideRock comprova si colisiona amb una zombi.
+   * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una zombi i el mou a la posicio inicial.
    * Apart d'això, li resta una vida.
    * Té els següents parametres:
-   * @param arrRocks
+   * @param arrZombi
    * @param newX
    * @param newY
    * @returns {boolean}
    */
-  testCollideRock(arrRocks, newX, newY) {
-    for (const roca of arrRocks) {
-      if (newX === roca.coordXPixels && newY === roca.coordYPixels) {
-        console.log("Has colisionat amb una roca");
+  testCollideRock(arrZombi, newX, newY) {
+    for (const zombi of arrZombi) {
+      if (newX === zombi.coordXPixels && newY === zombi.coordYPixels) {
+        console.log("Has colisionat amb una zombi");
         this.pacmanLive--;
-        alert("Has xocat amb una roca, has perdut una vida, et queden " + this.pacmanLive + " vides")
+        alert("Has xocat amb una zombi, has perdut una vida, et queden " + this.pacmanLive + " vides")
 
         /**
          * En el cas de que les vides del pacman siguin 0, mostra un missatge per consola de que ha perdut totes les vides i li pregunta si vol tornar a jugar.
@@ -145,9 +145,9 @@ export class Goku extends GameObject {
    * En el cas de que sigui un food, mostra un missatge per consola de que ha menjat un food/cirera i suma la puntuació.
    * Té els següents parametres:
    * @param arrFood
-   * @param arrFreezer
+   * @param arrZombi
    */
-  eatFood(arrFood, arrFreezer, arrPowerUp) {
+  eatFood(arrFood, arrZombi, arrPowerUp) {
     /**
      * @var puntsExtra mutiplicara per 2 en el cas de que estigui true, i per 1  en el cas de que estigui false
      */
@@ -163,13 +163,12 @@ export class Goku extends GameObject {
         }
     }
 
-    for (let i = 0; i < arrFreezer.length; i++) {
-        if (this.coordXPixels === arrFreezer[i].coordXPixels && this.coordYPixels === arrFreezer[i].coordYPixels) {
-            console.log("Has menjat Freezer");
-            this.score += arrFreezer[i].pointsCherry * puntsExtra;
-            arrFreezer.splice(i, 1);
-            console.log(`Puntuacio actual: ${this.score}`);
-            break;
+    for (let i = 0; i < arrZombi.length; i++) {
+        if (this.coordXPixels === arrZombi[i].coordXPixels && this.coordYPixels === arrZombi[i].coordYPixels) {
+            console.log("Has xocat amb zombie, has perdut");
+            arrZombi.splice(i, 1);
+            this.pacmanLive--;
+            return true;
         }
     }
 

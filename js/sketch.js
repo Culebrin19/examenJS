@@ -11,17 +11,17 @@ import { PowerUp } from "./classes/PowerUp.js";
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 11, 2, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 1],
   [1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 11, 0, 0, 6, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 1, 2, 1, 1, 1, 0, 14, 1],
   [1, 11, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 11, 0, 0, 2, 1, 0, 1, 1, 0, 11, 0, 0, 1],
+  [1, 11, 0, 0, 0, 1, 0, 1, 1, 0, 11, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 15, 2, 0, 2, 0, 0, 0, 0, 11, 0, 2, 4, 1],
+  [1, 15, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 4, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
@@ -31,19 +31,19 @@ export const IMAGE_SIZE = 32;
 export const WIDTH_CANVAS = 448;
 export const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
 const extraSize = 80;
-export const LIVES_PACMAN = 3;
+export const LIVES_PACMAN = 1;
 
 let imgRock;
-let imgEsferas;
+let imgAmpolla;
 let soundFood;
 let soundGoku;
 let numberErrorSound;
 
 let imgGoku;
-let imgFreezer;
+let imgZombie;
 let myGoku;
 let imgPowerUp;
-let imgTemplo;
+let imgDracula;
 
 const timerSecond = 0;
 let timer = 0;
@@ -60,7 +60,7 @@ const arrRocks = [];
 const arrFood = [];
 const arrCireres = [];
 const arrPowerUp = [];
-const arrFreezer = [];
+const arrZombi = [];
 const arrTemplo = [];
 let numberImagesLoaded = 0;
 console.log("Boff");
@@ -70,14 +70,14 @@ console.log("Boff");
  */
 function preload() { // tot lo pesat a preload
   // eslint-disable-next-line sonarjs/no-use-of-empty-return-value
-  imgRock = loadImage("../img/roca.png", handleImage("roca"), handleError);
-  imgEsferas = loadImage("../img/esferas.png", handleImage, handleError);
+  imgRock = loadImage("../img/paret.png", handleImage("roca"), handleError);
+  imgAmpolla = loadImage("../img/ampolla.png", handleImage, handleError);
   imgGoku = loadImage("../img/goku.png", handleImage, handleError);
-  imgFreezer = loadImage("../img/freezer4.png", handleImage, handleError);
+  imgZombie = loadImage("../img/zombi.png", handleImage, handleError);
   soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
   soundGoku = loadSound("../img/sounds/goku.mp3", handleSound, handleErrorSound);
   imgPowerUp = loadImage("../img/rayo.png", handleImage, handleError);
-  imgTemplo = loadImage("../img/templo.png", handleImage, handleError);
+  imgDracula = loadImage("../img/dracula.png", handleImage, handleError);
 }
 
 /**
@@ -143,7 +143,7 @@ function setup() { // s'executa una vegada
       } else if (map[filaActual][columnaActual] === 11) {
         const freezer = new Freezer(filaActual, columnaActual);
         console.log(`He creat menjar en la posicio fila ${filaActual}i columna ${columnaActual}`);
-        arrFreezer.push(freezer);
+        arrZombi.push(freezer);
       } else if (map[filaActual][columnaActual] === 6) {
         myGoku = new Goku(filaActual, columnaActual);
         const powerUp = new PowerUp(filaActual, columnaActual);
@@ -195,9 +195,9 @@ for (let i = 0; i < arrPowerUp.length; i++) {
  * @function testCollideCherry comprova si el pacman colisiona amb una cirera. Igual que en la funció anterior,
  * al colissionar mostra un error i elimina la cirera de la posicio que ha colisionat.
  */
-for (let i = 0; i < arrFreezer.length; i++) {
-  if (myGoku.coordXPixels === arrFreezer[i].coordXPixels && myGoku.coordYPixels === arrFreezer[i].coordYPixels) {
-    myGoku.testCollideRock(arrFreezer[i]);
+for (let i = 0; i < arrZombi.length; i++) {
+  if (myGoku.coordXPixels === arrZombi[i].coordXPixels && myGoku.coordYPixels === arrZombi[i].coordYPixels) {
+    myGoku.testCollideRock(arrZombi[i]);
     soundFood.play();
   }
 }
@@ -210,12 +210,12 @@ for (let i = 0; i < arrFreezer.length; i++) {
 function draw() {
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
-  arrFood.forEach((menjar) => menjar.showObject(imgEsferas));
-  arrFreezer.forEach((freezer) => freezer.showObject(imgFreezer));
+  arrFood.forEach((menjar) => menjar.showObject(imgAmpolla));
+  arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
   myGoku.showObject(imgGoku);
   arrPowerUp.forEach((powerUp) => powerUp.showObject(imgPowerUp));
-  arrFreezer.forEach((freezer) => freezer.showObject(imgFreezer));
-  arrTemplo.forEach((templo) => templo.showObject(imgTemplo));
+  arrZombi.forEach((freezer) => freezer.showObject(imgZombie));
+  arrTemplo.forEach((templo) => templo.showObject(imgDracula));
   textSize(20);
   textAlign(LEFT, CENTER);
   timer = floor((millis() - startTimeGame) / 1000);
@@ -231,16 +231,16 @@ function draw() {
  */
 function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
-    myGoku.moveRight(arrFood, arrRocks, arrFreezer, arrPowerUp);
+    myGoku.moveRight(arrFood, arrRocks, arrZombi, arrPowerUp);
     soundGoku.play();
   } else if (keyCode === LEFT_ARROW) {
-    myGoku.moveLeft(arrFood, arrRocks, arrFreezer, arrPowerUp);
+    myGoku.moveLeft(arrFood, arrRocks, arrZombi, arrPowerUp);
     soundGoku.play();
   } else if (keyCode === UP_ARROW) {
-    myGoku.moveUp(arrFood, arrRocks, arrFreezer, arrPowerUp);
+    myGoku.moveUp(arrFood, arrRocks, arrZombi, arrPowerUp);
     soundGoku.play();
   } else if (keyCode === DOWN_ARROW) {
-    myGoku.moveDown(arrFood, arrRocks, arrFreezer, arrPowerUp);
+    myGoku.moveDown(arrFood, arrRocks, arrZombi, arrPowerUp);
     soundGoku.play();
   } else {
     console.log("Error de tecla");
@@ -276,7 +276,7 @@ function showError() {
 function testFinishGame() {
 
   let foodRecollit = arrFood.length === 0;
-  let frezzersRecollit = arrFreezer.length === 0;
+  let frezzersRecollit = arrZombi.length === 0;
 
   let temple = arrTemplo.some(templo =>
     myGoku.coordXPixels === templo.coordXPixels && myGoku.coordYPixels === templo.coordYPixels
