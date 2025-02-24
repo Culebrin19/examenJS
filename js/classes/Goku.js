@@ -148,8 +148,8 @@ export class Goku extends GameObject {
   // }
 
   /**
-   * @function eatFood comprova si el pacman ha menjat un Food o una cirera.
-   * En el cas de que sigui un Food, mostra un missatge per consola de que ha menjat un Food/cirera i suma la puntuació.
+   * @function eatFood comprova si simon ha menjat/colissionat amb alguna ampolla/zombi/all, en base a que sigui, fa una cosa o una altra.
+   * En el cas de que sigui un all, mostra un missatge per consola de que ha menjat all i suma la puntuació.
    * Té els següents parametres:
    * @param arrFood
    * @param arrZombi
