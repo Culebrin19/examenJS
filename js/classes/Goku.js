@@ -97,10 +97,11 @@ export class Goku extends GameObject {
   }
 
   /**
-   * @function testCollideRock comprova si colisiona amb una zombi.
-   * En el cas de que si, mostra un missatge per consola de que ha colissionat amb una zombi i li resta una vida.
+   * @function testCollideRock comprova si colisiona amb una zombi i roca. En el cas de zomi, resta vida, en el cas de roca
+   * solament surt un console log de que no pot tirar en aquella posicio, pero no li resta cap vida
    * Té els següents parametres:
    * @param arrZombi
+   * @param arrRocks
    * @param newX
    * @param newY
    * @returns {boolean}
