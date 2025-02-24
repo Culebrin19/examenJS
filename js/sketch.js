@@ -320,6 +320,9 @@ function testFinishGame() {
   } else if (timer >= 90) {
     confirm("Fi del joc, has perdut");
     window.location.reload();
+  } else if (arrAll.length === 0) {
+    confirm("Fi del joc, has guanyat");
+    window.location.reload();
   }
 }
 
